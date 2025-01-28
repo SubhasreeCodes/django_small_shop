@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from backend.models import Category, Brand, Product, Cart
+from backend.models import Category, Brand, Product, Cart, Order
 
 # Register your models here.
 admin.site.register(Category)
@@ -23,3 +23,5 @@ admin.site.register(Brand,BrandAdmin)
 admin.site.register(Product)
 
 admin.site.register(Cart)
+
+admin.site.register(Order)

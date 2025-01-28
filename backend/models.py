@@ -40,3 +40,15 @@ class Cart(models.Model):
     class Meta:
         db_table='cart'
 
+class Order(models.Model):
+    id=models.BigAutoField(primary_key=True)
+    order_number = models.CharField(max_length=255,blank=True,null=True)
+    order_date = models.DateTimeField(auto_now_add=True)
+    total_amount = models.DecimalField(max_digits=10,decimal_places=2,null=True,blank=True)
+
+    def __str__(self):
+        return self.order_number
+    class Meta:
+        db_table='order'
+
+
