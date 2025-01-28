@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from backend.models import Category, Brand
+from backend.models import Category, Brand, Product
 
 # Register your models here.
 admin.site.register(Category)
@@ -19,3 +19,5 @@ class BrandAdmin(admin.ModelAdmin):
     image_tag.short_description = 'Image'
 
 admin.site.register(Brand,BrandAdmin)
+
+admin.site.register(Product)
