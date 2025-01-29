@@ -126,3 +126,25 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = 'media/'
+
+JAZZMIN_SETTINGS = {
+    # title of the window (Will default to current_admin_site.site_title if absent or None)
+    "site_title": "Small Shop",
+
+    # Title on the login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
+    "site_header": "Library",
+
+    # Welcome text on the login screen
+    "welcome_sign": "Welcome to the Small Shop",
+
+# Custom links to append to app groups, keyed on app name
+    "custom_links": {
+        "backend": [{
+            "name": "Add Category",
+            "url": "/admin/backend/category/add/",
+            "icon": "fas fa-comments",
+            "permissions": ["backend.view_book"]
+        }]
+    },
+
+}
