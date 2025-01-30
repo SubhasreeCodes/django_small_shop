@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 
+from django.conf.global_settings import STATICFILES_DIRS
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -118,6 +120,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR/"static"]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -131,8 +134,11 @@ JAZZMIN_SETTINGS = {
     # title of the window (Will default to current_admin_site.site_title if absent or None)
     "site_title": "Small Shop",
 
+    # Logo to use for your site, must be present in static files, used for brand on top left
+    "site_logo": "logo.jpg",
+
     # Title on the login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
-    "site_header": "Library",
+    "site_header": "Small Shop",
 
     # Welcome text on the login screen
     "welcome_sign": "Welcome to the Small Shop",
@@ -146,5 +152,4 @@ JAZZMIN_SETTINGS = {
             "permissions": ["backend.view_book"]
         }]
     },
-
 }
