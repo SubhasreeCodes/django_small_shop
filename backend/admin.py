@@ -6,10 +6,13 @@ from backend.models import Category, Brand, Product, Cart, Order, OrderItem
 # Register your models here.
 class CategoryAdmin(admin.ModelAdmin):
 
-    list_display = ('name', 'id', 'article_count',)
+    list_display = ( 'id','name', 'article_count','description')
+
+    # Specify 'name' as the field to be linked to the change view
+    list_display_links = ('id', 'description')
 
     # Add filters for name field
-    list_filter = ('name',)
+    list_filter = ('id','name',)
 
     # Add search for name field
     search_fields = ('name',)
@@ -19,6 +22,9 @@ class CategoryAdmin(admin.ModelAdmin):
 
     # To sort by name in descending order, use the negative sign
     # ordering = ['-name']
+
+    # Allow inline editing of the 'name' field
+    list_editable = ('name',)
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
