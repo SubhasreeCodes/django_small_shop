@@ -25,6 +25,12 @@ class CategoryAdmin(admin.ModelAdmin):
         # You can customize the queryset here, e.g., add annotations or filters
         return qs.filter(is_published=False)
 
+    def article_count(self, obj):
+        return obj.article_set.count()
+
+    # Custom column name
+    article_count.short_description = 'Number of Articles'
+
 admin.site.register(Category,CategoryAdmin)
 
 # admin.site.register(Brand)
