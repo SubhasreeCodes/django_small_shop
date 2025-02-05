@@ -6,7 +6,7 @@ from backend.models import Category, Brand, Product, Cart, Order, OrderItem
 # Register your models here.
 class CategoryAdmin(admin.ModelAdmin):
 
-    list_display = ('name', 'id',)
+    list_display = ('name', 'id', 'article_count',)
 
     # Add filters for name field
     list_filter = ('name',)
@@ -26,12 +26,21 @@ class CategoryAdmin(admin.ModelAdmin):
         return qs.filter(is_published=False)
 
     def article_count(self, obj):
+        # Make sure the related manager is correctly referenced, especially if it's a foreign key relation
         return obj.article_set.count()
-
     # Custom column name
     article_count.short_description = 'Number of Articles'
 
-admin.site.register(Category,CategoryAdmin)
+    def mark_as_published(self, request, queryset):
+        queryset.update(is_published=True)
+    mark_as_published.short_description = 'Mark selected category as published'
+
+    def mark_as_unpublished(self, request, queryset):
+        queryset.update(is_published=False)
+    mark_as_unpublished.short_description = 'Mark selected category as unpublished'
+    actions = [mark_as_published, mark_as_unpublished]
+
+admin.site.register(Category, CategoryAdmin)
 
 # admin.site.register(Brand)
 class BrandAdmin(admin.ModelAdmin):
