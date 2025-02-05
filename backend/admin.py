@@ -4,7 +4,29 @@ from django.utils.html import format_html
 from backend.models import Category, Brand, Product, Cart, Order, OrderItem
 
 # Register your models here.
-admin.site.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+
+    list_display = ('name', 'id',)
+
+    # Add filters for name field
+    list_filter = ('name',)
+
+    # Add search for name field
+    search_fields = ('name',)
+
+    # Sorting by name in ascending order
+    ordering = ['name']
+
+    # To sort by name in descending order, use the negative sign
+    # ordering = ['-name']
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        # You can customize the queryset here, e.g., add annotations or filters
+        return qs.filter(is_published=False)
+
+admin.site.register(Category,CategoryAdmin)
+
 # admin.site.register(Brand)
 class BrandAdmin(admin.ModelAdmin):
     list_display = ('id','name', 'image_tag')

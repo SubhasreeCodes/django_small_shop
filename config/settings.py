@@ -40,7 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'backend'
+
+    'backend',
+
+    'rest_framework',
+
+    # api v1 for angular or react
+    'api_v1'
 ]
 
 MIDDLEWARE = [
